@@ -1,10 +1,25 @@
-import React from "react"
+import React, {lazy, Suspense} from "react"
+import {Router} from "@reach/router"
 import "./style.css"
+import Header from "./components/common/Header"
+import HomePage from "./components/home/HomePage"
+import Spinner from "./components/common/Spinner"
 
+const CoursesPage = lazy(() => import("./components/courses/CoursesPage"))
+const AboutPage = lazy(() => import("./components/about/AboutPage"))
+const PageNotFound = lazy(() => import("./components/common/PageNotFound"))
 
 const App = props => (
   <div className="container">
-    <h1>App</h1>
+    <Suspense fallback={<Spinner />}>
+      <Header />
+      <Router>
+        <HomePage path="/" />
+        <CoursesPage path="courses" />
+        <AboutPage path="about" />
+        <PageNotFound default />
+      </Router>
+    </Suspense>
   </div>
 )
 
