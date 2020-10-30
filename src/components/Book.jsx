@@ -6,7 +6,9 @@ import C from "../contants"
 function useActiveBook(book) {
   const dispatch = useDispatch()
   const activeBook = useSelector(state => state.activeBook)
+  const cats = useSelector(state => state.cats)
 
+  const catName = cats[book.categoryId].title
   const isActive = useMemo(() => activeBook === book._id, [
     activeBook,
     book._id,
@@ -15,15 +17,15 @@ function useActiveBook(book) {
   const setActive = useCallback(() => {
     dispatch({type: C.SELECT_BOOK, payload: {id: book._id}})
   }, [book._id, dispatch])
-  return {isActive, setActive}
+  return {isActive, setActive, catName}
 }
 
 const Book = ({book}) => {
-  const {isActive, setActive} = useActiveBook(book)
+  const {isActive, setActive, catName} = useActiveBook(book)
   return (
     <li className="list-group-item">
       <h2 onClick={setActive}>Title: {book.title}</h2>
-      <p>Category: {book.categoryId}</p>
+      <p>Category: {catName}</p>
       {isActive && <p>{book.desc}</p>}
     </li>
   )
