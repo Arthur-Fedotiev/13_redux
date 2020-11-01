@@ -20,6 +20,8 @@
     "redux-devtools-extension": "^2.13.8",
     "redux-thunk": "^2.3.0",
     "reselect": "^4.0.0",
+    "semantic-ui-css": "^2.4.1",
+    "semantic-ui-react": "^2.0.1",
     "shortid": "^2.2.15"
   },
   "scripts": {
@@ -27,7 +29,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "dev": "./node_modules/.bin/concurrently \"npm run start:api\" \"npm start\"",
+    "dev": "concurrently \"npm run start:api\" \"npm start\"",
     "prestart:api": "node tools/createMockDb.js",
     "start:api": "node tools/apiServer.js"
   },
@@ -66,5 +68,17 @@
     "redux-mock-store": "^1.5.4",
     "rimraf": "^3.0.2"
   },
-  "apiurl": "http://localhost:3001"
+  "apiurl": "http://localhost:3001",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Arthur-Fedotiev/13_redux.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Arthur-Fedotiev/13_redux/issues"
+  },
+  "homepage": "https://localhost:3000",
+  "description": ""
 }

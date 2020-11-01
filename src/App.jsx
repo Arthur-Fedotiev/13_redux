@@ -1,21 +1,23 @@
-import React from "react"
+import React, {lazy, Suspense} from "react"
+
+import {Router} from "@reach/router"
+import HomePage from "./components/HomePage"
+import {Header} from "./components/Header"
+import Spinner from "./components/Spinner"
 import "./style.css"
-import BooksList from "./components/BooksList"
-import Categories from "./components/Categories"
+
+const BooksForm = lazy(() => import("./components/BooksForm"))
 
 const App = props => (
-  <div className="container">
-    <h1>Books</h1>
-    <div className="row">
-      <div className="col-sm-3">
-        <h2>Categories</h2>
-        <Categories />
-      </div>
-      <div className="col-sm-9">
-        <BooksList />
-      </div>
+  <Suspense fallback={<Spinner />}>
+    <div className="container">
+      <Header />
+      <Router>
+        <HomePage path="/" />
+        <BooksForm path="/new" />
+      </Router>
     </div>
-  </div>
+  </Suspense>
 )
 
 export default App
